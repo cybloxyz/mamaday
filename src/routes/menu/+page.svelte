@@ -12,12 +12,12 @@
   <Navbar/>
 
   <div class="min-h-screen backdrop-blur-lg">
-    <div class="pt-42 px-10 pb-32">
+    <div class="pt-16 md:pt-42 px-10 pb-32">
       
       {#if unlockedMenu.length === 0}
         <div class="flex flex-col items-center justify-center mt-20 text-center">
           <img src="/emp.png" alt="Empty" class="w-48 mb-6 opacity-70" />
-          <h1 class="bby text-4xl text-[#380d07]">There is no recipe here, start cooking!</h1>
+          <h1 class="text-4xl text-[#380d07]">There is no recipe here, start cooking!</h1>
           <a href="/cook" class="mt-6 px-8 py-4 bg-[#380d07] text-white rounded-full pgm hover:scale-110 transition-all">
             Go to Kitchen
           </a>
@@ -38,7 +38,7 @@
             {item.rarity}
           </div>
 
-          <h2 class="text-xl pgm uppercase leading-tight">{item.name[$language]}</h2>
+          <h2 class="text-sm md:text-xl pgm uppercase leading-tight">{item.name[$language]}</h2>
           
           <p class="text-lg font-bold mt-2 text-[#713822]">
             {#if $currency === 'id'}

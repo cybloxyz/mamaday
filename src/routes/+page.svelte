@@ -4,6 +4,8 @@
   import { language, currency, manualRates } from '$lib/store';
   import Navbar from '$lib/components/navbar.svelte';
   import Bentobox from '$lib/components/bentobox.svelte'; 
+  import Pop from '$lib/components/pop.svelte'; 
+  import moon from '$lib/assets/moon.png';
   import './layout.css';
   
   let isLoading = true;
@@ -12,10 +14,10 @@
   const content = {
     say: { id: `SELAMAT HARI IBU!`, en: `HAPPY MOTHER'S DAY!` },
     say2: { 
-      id: `siap untuk tes memasakmu?`, 
+      id: `untuk seluruh peran ibu di dunia`, 
       en: `ready to take cooking test?` 
     },
-    say3: { id: `klik tombol 'masak'!`, en: `click the 'cook' button!` },
+    say3: { id: `untuk memulai permainan klik tombol 'kuis'`, en: `click the 'cook' button!` },
     staff: { id: `TERATAS!`, en: `TOP!` },
   };
 
@@ -39,8 +41,9 @@
 </script>
 
 {#if isLoading}
-  <div class="fixed inset-0 flex items-center justify-center bg-[#fed0f1] z-999" transition:fade>
-    <img src="/benben.gif" alt="Loading..." class="w-48 h-48 object-contain" />
+  <div class="fixed inset-0 flex flex-col items-center justify-center bg-[#fed0f1] z-999" transition:fade>
+    <img src="/bunn.png" alt="Loading..." class="w-48 h-48 object-contain" />
+    <h1 class="text-3xl text-[#a43680]">loading!</h1>
   </div>
 {:else}
   <div class="flat min-h-screen relative" style="background-color: #facfa2; background-image: url('/mmday.png');">
@@ -49,18 +52,20 @@
 
     <div class="bg-white/10 backdrop-blur-sm min-h-screen w-full">
       
-      <section id="hero" class="pt-48 pb-20 flex justify-center items-center">
+      <section id="hero" class="pt-38 md:pt-50 pb-20 flex flex-col justify-center items-center">
+      <img src={moon}/>
           <div class="text-center px-4">
-            <h1 class="text-6xl md:text-9xl mb-8 text-white drop-shadow-lg">
+            <h1 class="text-border text-7xl md:text-9xl mb-8 drop-shadow-lg">
               {content.say[$language]}
             </h1>
-            <p class="text-lg md:text-2xl mb-6 text-white font-medium">
+            <p class="text-lg md:text-2xl mb-6 text-[#a43680] font-medium">
               {content.say2[$language]}
             </p>
-            <p class="text-sm md:text-lg mb-8 text-white font-medium">
+            <p class="text-sm md:text-lg mb-8 text-[#bb4494] font-medium">
               {content.say3[$language]}
             </p>
         </div>
+        <Pop/>
       </section>
 
  <!--     <section id="best" class="mt-24 pb-20">

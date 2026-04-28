@@ -2,6 +2,7 @@
   import { language, currency } from '$lib/store';
   import { fly } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
+  import moon from '$lib/assets/moon.png';
 
   // Konten teks
   const home = { id: `menu`, en: `menu` };
@@ -9,7 +10,6 @@
   const hom = { id: `home`, en: `home` };
 
   // Fungsi ganti data (Update store)
-  const changecurr = () => currency.update(n => n === "id" ? "en" : "id");
   const changelang = () => language.update(n => n === "id" ? "en" : "id" );
   
 </script>
@@ -24,7 +24,7 @@
       class="nav-logo cursor-pointer select-none flex items-center bg-transparent border-none p-0"
       on:click={changelang}
     >
-      <img src="/{$language}.webp" alt="flag" class="imeg-f inline-block lg:mr-2 md:mr-2 mr-0" />
+      <img src={moon} alt="moon" class="imeg-f inline-block lg:mr-2 md:mr-2 mr-0" />
       <span class="brand-text">MOTHER'S DAY!</span>
     </button>
   </div>
@@ -104,7 +104,7 @@
   }
 
   @media (max-width: 768px) {
-    .navbar { height: 50px; padding: 0 10px; }
+    .navbar { height: 50px; padding: 0 6px; }
     .nav-logo { font-size: 14px; }
     .nav-links a { font-size: 12px; }
     .imeg, .imeg-f { height: 16px; }

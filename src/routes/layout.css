@@ -29,3 +29,10 @@ h2 {
 p {
   font-family: "bby";
 }
+
+.text-border {
+  color: #d45d9f; /* Warna isi tulisan */
+  
+  /* -webkit-text-stroke: [tebal] [warna] */
+  -webkit-text-stroke: 4px rgb(255, 221, 244); /* Tulisan putih dengan border hitam 2px */
+}

@@ -130,17 +130,17 @@ function calculateResult() {
      <Navbar/>
   
   {#if step === 0}
-    <div in:scale class="text-center bg-white/80 p-10 rounded-3xl border-4 border-[#380d07] backdrop-blur-md">
+    <div in:scale class="text-center bg-white/80 p-10 rounded-3xl border-4 border-[#560d46] backdrop-blur-md">
       <h1 class="pgm text-5xl mb-6 uppercase">{ui.title[$language]}</h1>
       <p class="bby text-xl mb-8">{ui.desc[$language]}</p>
       <button on:click={() => step = 1} 
-              class="px-12 py-5 bg-[#713822] text-white pgm text-2xl rounded-full hover:scale-110 transition-all shadow-lg">
+              class="px-12 py-5 bg-[#71225d] text-white pgm text-2xl rounded-full hover:scale-110 transition-all shadow-lg">
         {ui.start[$language]}
       </button>
     </div>
 
   {:else if step === 1 && currentQuestions.length > 0}
-    <div in:fade class="w-full max-w-lg bg-[#e8d1b9] p-8 rounded-2xl border-4 border-[#380d07] shadow-2xl">
+    <div in:fade class="w-full max-w-lg bg-[#e8d1b9] p-8 rounded-2xl border-4 border-[#560d46] shadow-2xl">
       <div class="flex justify-between mb-4">
         <span class="pix text-lg">{ui.question[$language]} {currentQIndex + 1}/5</span>
         <span class="pix text-lg">{ui.score[$language]}: {score}</span>
@@ -151,7 +151,7 @@ function calculateResult() {
       <div class="grid gap-4">
         {#each currentQuestions[currentQIndex].a[$language] as answer, i}
           <button on:click={() => handleAnswer(i)}
-                  class="w-full py-4 px-6 bg-white hover:bg-[#713822] hover:text-white border-2 border-[#380d07] rounded-xl transition-all bby text-xl text-left">
+                  class="w-full py-4 px-6 bg-white hover:bg-[#71225d] hover:text-white border-2 border-[#560d46] rounded-xl transition-all bby text-xl text-left">
             {answer}
           </button>
         {/each}
@@ -161,14 +161,14 @@ function calculateResult() {
 
   {#if showPopup}
     <div class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-6">
-      <div in:fly={{ y: 50 }} class="bg-white rounded-3xl border-8 border-[#713822] p-8 max-w-sm w-full text-center relative overflow-hidden">
+      <div in:fly={{ y: 50 }} class="bg-white rounded-3xl border-8 border-[#7e2863] p-8 max-w-sm w-full text-center relative overflow-hidden">
         
         {#if finalStatus === "FAILED"}
           <h2 class="pgm text-4xl text-red-600 mb-4 uppercase">{ui.failedTitle[$language]}</h2>
           <p class="bby text-xl mb-6">{ui.failedDesc[$language]}</p>
         {:else}
-          <h2 class="pgm text-3xl mb-2 uppercase text-[#713822]">{ui.revealTitle[$language]}</h2>
-          <h1 class="pgm text-5xl mb-4 text-[#541a0e] tracking-widest">{finalStatus}!</h1>
+          <h2 class="pgm text-3xl mb-2 uppercase text-[#7c266c]">{ui.revealTitle[$language]}</h2>
+          <h1 class="pgm text-5xl mb-4 text-[#560d46] tracking-widest">{finalStatus}!</h1>
           
           <div class="bg-[#fdf2e9] p-4 rounded-xl mb-6 border-2 border-dashed border-[#713822]">
             <img src={revealedMeal.image} alt="result" class="w-32 h-32 mx-auto object-contain mb-2" />
@@ -179,11 +179,11 @@ function calculateResult() {
         {/if}
 
         <button on:click={() => goto('/menu')} 
-                class="w-full py-4 my-4 bg-[#713822] text-white pgm text-2xl rounded-xl hover:bg-[#380d07] transition-all">
+                class="w-full py-4 my-4 bg-[#712262] text-white pgm text-2xl rounded-xl hover:bg-[#560d46] transition-all">
           {ui.btnMenu[$language]}
         </button>
         <button on:click={resetGame} 
-                class="w-full py-4 bg-[#713822] text-white pgm text-2xl rounded-xl hover:bg-[#380d07] transition-all">
+                class="w-full py-4 bg-[#712262] text-white pgm text-2xl rounded-xl hover:bg-[#560d46] transition-all">
           {ui.btnCook[$language]}
         </button>
       </div>

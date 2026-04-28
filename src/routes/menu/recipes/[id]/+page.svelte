@@ -22,8 +22,8 @@
 
 <Navbar />
 
-<div class="min-h-screen pt-40 pb-10 px-6 flex justify-center items-center" 
-     style="background-color: #facfa2; background-image: url('/bgup3c.png');">
+<div class="min-h-screen pt-28 md:pt-40 pb-10 px-6 flex justify-center items-center" 
+     style="background-color: #facfa2; background-image: url('/mmday.png');">
   
   {#if item}
     <div in:fade={{ duration: 500 }} 
