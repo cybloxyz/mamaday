@@ -2,22 +2,54 @@
   import { menuData } from '$lib/data/menudata';
   import { page } from '$app/stores';
   import { language, currency } from '$lib/store';
-  import { fade, fly } from 'svelte/transition';
+  import { fade, fly, scale } from 'svelte/transition';
   import Navbar from '$lib/components/navbar.svelte';
+  import { onMount } from 'svelte';
 
-  // Ambil ID dari URL dan cari datanya di menuData
   $: itemId = $page.params.id;
   $: item = menuData.find(m => m.id === itemId);
 
-  // Logic Konversi Mata Uang Sederhana
   const rates = { id: 15000, en: 1 };
   $: displayPrice = item ? (item.price * ($currency === 'id' ? rates.id : rates.en)) : 0;
   $: priceLabel = $currency === 'id' ? 'Rp' : '$';
 
-  // Format angka ribuan untuk Rupiah
   const formatNumber = (num) => {
     return $currency === 'id' ? num.toLocaleString('id-ID') : num.toFixed(2);
   };
+
+  // --- LOGIKA KODE RAHASIA ---
+  let showDormModal = false;
+  let selectedDorm = "";
+  let savedCode = "";
+
+  // Data kode (Beda asrama beda kode)
+  const dormCodes = {
+    "Hasanah": "H7X",
+    "Ulya": "U4F",
+    "Saadah": "S9Z",
+    "Izzah": "I2B",
+    "Najah": "N5K",
+    "Thalha": "T8M",
+    "Marhamah": "M1W",
+    "Maimanah": "M3P",
+    "Mukhtar": "M6G",
+    "Yang lain": "Y0L"
+  };
+
+  onMount(() => {
+    // Cek apakah sudah pernah klaim untuk item ini
+    const existing = localStorage.getItem(`secret_code_${itemId}`);
+    if (existing) savedCode = existing;
+  });
+
+  function handleClaim() {
+    if (selectedDorm) {
+      const code = dormCodes[selectedDorm];
+      localStorage.setItem(`secret_code_${itemId}`, code);
+      savedCode = code;
+      showDormModal = false;
+    }
+  }
 </script>
 
 <Navbar />
@@ -75,7 +107,22 @@
           "{item.description[$language]}"
         </p>
 
-        <div class="mt-auto w-full border-t-4 border-dashed border-[#713822] pt-6">
+        <div class="w-full mb-6">
+          {#if savedCode}
+            <div class="bg-[#380d07] p-4 rounded-2xl border-2 border-[#713822] text-white" in:scale>
+              <span class="pix text-[10px] block opacity-70">SECRET CODE UNLOCKED</span>
+              <span class="bby text-2xl tracking-widest">{savedCode}</span>
+            </div>
+          {:else}
+            <button 
+              on:click={() => showDormModal = true}
+              class="w-full py-3 bg-[#712262] text-white pgm text-lg rounded-full hover:bg-[#560d46] transition-all border-2 border-white shadow-md">
+              CLAIM SECRET CODE
+            </button>
+          {/if}
+        </div>
+
+        <div class="mt-auto w-full border-t-4 border-dashed border-[#713822] pt-6 mb-6">
           <span class="pix text-lg text-[#713822] block mb-1">MARKET PRICE</span>
           <span class="pix text-4xl text-[#380d07]">
             {priceLabel} {formatNumber(displayPrice)}
@@ -83,7 +130,7 @@
         </div>
         
         <a href="/menu" 
-           class="mt-8 px-10 py-4 bg-[#713822] text-white pgm text-xl rounded-full hover:scale-105 transition-all shadow-lg active:translate-y-1">
+           class="w-full px-10 py-4 bg-[#380d07] text-white pgm text-xl rounded-full hover:scale-105 transition-all shadow-lg text-center">
           BACK TO MENU
         </a>
       </div>
@@ -97,20 +144,51 @@
   {/if}
 </div>
 
+{#if showDormModal}
+  <div class="backdrop" on:click={() => showDormModal = false} transition:fade>
+    <div class="modal max-h-[90vh] flex flex-col" on:click|stopPropagation transition:scale>
+      <h2 class="pgm text-2xl text-[#380d07] mb-2 text-center uppercase">Choose Name</h2>
+      <p class="pix text-[10px] text-center mb-4">Select your name to reveal the password</p>
+      
+      <div class="grid grid-cols-2 gap-2 mb-6 overflow-y-auto pr-2">
+        {#each Object.keys(dormCodes) as name}
+          <button 
+            on:click={() => selectedDorm = name}
+            class="py-2 px-2 border-2 pgm text-sm rounded-xl transition-all {selectedDorm === name ? 'bg-[#713822] text-white border-[#713822]' : 'border-[#380d07] text-[#380d07]'}">
+            {name}
+          </button>
+        {/each}
+      </div>
+
+      {#if selectedDorm}
+        <button 
+          on:click={handleClaim}
+          in:fade
+          class="w-full py-3 bg-[#380d07] text-white pgm text-xl rounded-xl hover:bg-black transition-all shadow-lg">
+          GET PASSWORD
+        </button>
+      {/if}
+    </div>
+  </div>
+{/if}
+
 <style>
   .pix { font-family: 'pix'; }
   .bby { font-family: 'bby'; }
   .pgm { font-family: 'pgm'; }
 
-  /* Custom Scrollbar biar makin cantik */
-  div::-webkit-scrollbar {
-    width: 8px;
+  .backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(56, 13, 7, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;
+    backdrop-filter: blur(5px);
   }
-  div::-webkit-scrollbar-track {
-    background: transparent;
+
+  .modal {
+    background: #facfa2; padding: 2rem; border-radius: 30px; border: 4px solid #380d07;
+    width: 90%; max-width: 350px;
   }
-  div::-webkit-scrollbar-thumb {
-    background: #713822;
-    border-radius: 10px;
-  }
+
+  div::-webkit-scrollbar { width: 8px; }
+  div::-webkit-scrollbar-track { background: transparent; }
+  div::-webkit-scrollbar-thumb { background: #713822; border-radius: 10px; }
 </style>

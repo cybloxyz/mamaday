@@ -17,7 +17,7 @@
       id: `untuk seluruh peran ibu di dunia`, 
       en: `ready to take cooking test?` 
     },
-    say3: { id: `untuk memulai permainan klik tombol 'kuis'`, en: `click the 'cook' button!` },
+    say3: { id: `untuk bermain mini game klik tombol 'kuis'`, en: `click the 'cook' button!` },
     staff: { id: `TERATAS!`, en: `TOP!` },
   };
 

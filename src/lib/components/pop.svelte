@@ -7,7 +7,8 @@
 
   const documents = [
     { id: 'id', label: 'Guest ID' },
-    { id: 'letter', label: 'Letter' }
+    { id: 'letter', label: 'Surat' },
+    { id: 'panduan', label: 'Panduan'}
   ];
 
   function openModal(doc) {
@@ -23,6 +24,8 @@
   $: currentLetter = secretLetters[inputCode.join('')];
 
   function handleInput(e, index) {
+    inputCode[index] = e.target.value.toUpperCase();
+
     if (e.target.value && index < 2) {
       e.target.nextElementSibling?.focus();
     }
@@ -44,10 +47,18 @@
 
       {#if activeType === 'id'}
         <div class="letter-component">
-           <h2>Your Guest Access Card</h2>
+           <h2>Your Access Card</h2>
            <img src="/idc.png" alt="Guest ID" />
            <p>Authorized Personnel Only</p>
         </div>
+
+        {:else if activeType === 'panduan'}
+          <div class="letter-component" transition:fade>
+            <h2>Panduan</h2>
+            <img src="/bunn.png" alt="Guest ID" />
+            <p>untuk membuka surat, klik 'kuis' di atas dan selesaikan mini game, setelah mendapat resep (menyelesaikan mini game), pergi ke halaman 'menu' dan klik pada resep, 
+                scroll kebawah untuk mendapatkan kode, lalu kembali ke 'home' dan masukkan kode tersebut pada tombol 'surat'</p>
+          </div>
       
       {:else if activeType === 'letter'}
         {#if currentLetter}
@@ -58,7 +69,8 @@
           </div>
         {:else}
           <div class="p-6 text-center">
-            <h3 class="text-[#712262] font-bold mb-4">Input Code</h3>
+            <h2 class="text-[#712262] text-2xl mb-1">Masukkan Kode</h2>
+            <p class="text-sm mb-2" >dapatkan kode setelah menyelesaikan satu mini game!</p>
             <div class="flex gap-2 justify-center">
               {#each [0, 1, 2] as i}
                 <input 
@@ -113,7 +125,7 @@
   .code-input {
     width: 3rem; height: 3.5rem; text-align: center;
     border: 2px solid #712262; border-radius: 10px;
-    font-size: 1.5rem; font-weight: bold;
+    font-size: 1.5rem; font-family: 'bby';
   }
 
   .backdrop {
