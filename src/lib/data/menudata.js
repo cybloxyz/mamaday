@@ -103,7 +103,7 @@ export const menuData = [
         id: "Q1W8",
         name: { en: "Classic Omelette", id: "Telur Dadar Klasik" },
         description: { en: "Fluffy eggs seasoned with salt and pepper.", id: "Telur lembut yang dibumbui garam dan lada." },
-        price: 1.50, image: "/omg.jpeg", rarity: "COMMON",
+        price: 1.50, image: "/om.jpeg", rarity: "COMMON",
         recipe: {
             ingredients: { id: ["3 Telur Ayam", "1 sdm Mentega", "Garam & Lada", "Sedikit Susu Cair"], en: ["3 Eggs", "1 tbsp Butter", "Salt & Pepper", "A splash of Milk"] },
             instructions: { 

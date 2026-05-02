@@ -1,53 +1,23 @@
 // letter.js
 export const secretLetters = {
   "H7X": {
-    title: "Letter for Hasanah",
+    title: "Letter for our hero",
     img: "/letters/hasanah.png",
-    message: "Pesan khusus untuk Hasanah ada di sini..."
+    message: "selamat hari ibu zah...terima kasih untuk waktu, tenaga dan kesabarannya selama membersamai kami, mulai dari bangun pagi hingga tidur lagi, terima kasih untuk tetap hadir disini, semoga semua lelah terbalaskan dengan bahagia dan kesuksesan di masa depan nanti <3"
   },
   "U4F": {
-    title: "Letter for Ulya",
+    title: "Letter for our hero",
     img: "/letters/ulya.png",
-    message: "Pesan khusus untuk Ulya ada di sini..."
+    message: "selamat hari ibu zah...terima kasih untuk waktu, tenaga dan kesabarannya selama mengajarkam kami di sekolah, semua ilmu yang ustazah berikan akan selalu menjadi amal jariyah bagi ustazah, ilmu dari ustazah yang kelak kami gunakan untuk menjadi sukses esok hari, semoga semua lelah terbalaskan dengan bahagia dan kesuksesan di masa depan nanti <3"
   },
   "S9Z": {
-    title: "Letter for Saadah",
+    title: "Letter for our hero",
     img: "/letters/saadah.png",
-    message: "Pesan khusus untuk Saadah ada di sini..."
+    message: "selamat hari ibu,...terima kasih sudah menjadi ibu yang baik dan kuat, terima kasih untuk tenaga dan kesabarannya, terima kasih untuk waktu yang sudah dilalui, semoga semua lelah terbalaskan dengan bahagia dan kesuksesan di masa depan nanti <3"
   },
-  "I2B": {
-    title: "Letter for Izzah",
+  "A2B": {
+    title: "Letter for our hero",
     img: "/letters/izzah.png",
-    message: "Pesan khusus untuk Izzah ada di sini..."
+    message: "selamat hari ibu zah...terima kasih untuk semua kontribusinya zah, untuk waktu, tenaga dan kesabarannya selama berada disini, terima kasih untuk tetap hadir, semoga semua lelah terbalaskan dengan bahagia dan kesuksesan di masa depan nanti <3"
   },
-  "N5K": {
-    title: "Letter for Najah",
-    img: "/letters/najah.png",
-    message: "Pesan khusus untuk Najah ada di sini..."
-  },
-  "T8M": {
-    title: "Letter for Thalha",
-    img: "/letters/thalha.png",
-    message: "Pesan khusus untuk Thalha ada di sini..."
-  },
-  "M1W": {
-    title: "Letter for Marhamah",
-    img: "/letters/marhamah.png",
-    message: "Pesan khusus untuk Marhamah ada di sini..."
-  },
-  "M3P": {
-    title: "Letter for Maimanah",
-    img: "/letters/maimanah.png",
-    message: "Pesan khusus untuk Maimanah ada di sini..."
-  },
-  "M6G": {
-    title: "Letter for Mukhtar",
-    img: "/letters/mukhtar.png",
-    message: "Pesan khusus untuk Mukhtar ada di sini..."
-  },
-  "Y0L": {
-    title: "Letter for Everyone",
-    img: "/letters/others.png",
-    message: "Pesan untuk teman-teman lainnya..."
-  }
 };
