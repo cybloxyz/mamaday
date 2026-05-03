@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import Navbar from '$lib/components/navbarcook.svelte';
+  import Navbar from '$lib/components/navbar.svelte';
   import { fade, scale, fly } from 'svelte/transition';
   import { cookedRecipes, language } from '$lib/store'; // Tambah language store
   import { menuData } from '$lib/data/menudata';
